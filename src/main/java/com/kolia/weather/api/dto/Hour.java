@@ -7,5 +7,4 @@ public record Hour(
         @JsonProperty("wind_kph") double windKph,
         @JsonProperty("wind_dir") String windDir
 ) {
-
 }
