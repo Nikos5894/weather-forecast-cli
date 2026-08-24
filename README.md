@@ -96,6 +96,12 @@ not the same moment everywhere. Instead of taking `forecastday[1]`, I read the c
 own local time from the response, add one day, and look for the forecast day with that
 date. If it is not there, the app throws an error instead of showing the wrong day.
 
+**Note on the table when cities are in different time zones.** Around midnight the
+cities can be on different local dates, so "tomorrow" is a different day for each of
+them. In that case the table shows one column group per date and marks the
+combinations that do not apply with `-`. This is why the app resolves the next day
+from each city's own local time instead of using a single date for everyone.
+
 **Wind direction.** The API does not include a wind direction in the daily summary —
 only in the hourly data. So I take the direction that appears most often in the 24
 hourly values. If there is no hourly data, the app prints `n/a`.
@@ -129,8 +135,4 @@ not break when the saved forecast gets old. It still catches the main mistake I 
 worried about: a wrong field name in `@JsonProperty`, which would leave a value at
 `0.0` or `null`.
 
-## What I would add next
 
-- Tests for the mapper (time zones) and for the table formatter
-- Retry when the API returns a server error
-- CSV and JSON output options
